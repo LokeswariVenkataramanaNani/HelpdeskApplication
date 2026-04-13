@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Helpdesk</title>
+</head>
+<body>
+    <h1>Helpdesk Ticket System</h1>
+
+    <form action="/create" method="post">
+        <input type="text" name="issue" placeholder="Enter issue" required>
+        <button type="submit">Submit Ticket</button>
+    </form>
+
+    <h2>Tickets</h2>
+    <ul>
+        {% for ticket in tickets %}
+        <li>
+            {{ ticket.id }} - {{ ticket.issue }} - {{ ticket.status }}
+            {% if ticket.status == "Open" %}
+            <a href="/resolve/{{ ticket.id }}">Resolve</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
